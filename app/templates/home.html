@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        #myTable th, #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        #myTable tr.header, #myTable tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+<h2>Todo Tasks</h2>
+<div>
+    <a href="/todo">Add Todo Task</a>
+</div>
+<br/>
+<br/>
+
+
+<table id="myTable">
+    <tr class="header">
+        <th>Title</th>
+        <th>Description</th>
+        <th>Date & time</th>
+        <th>Status</th>
+        <th>Created at</th>
+        <th>Modified at</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% for row in res %}
+        <tr>
+            <td>{{ row.title }}</td>
+            <td>{{ row.description }}</td>
+            <td>{{ row.task_datetime }}</td>
+            <td>{{ row.status }}</td>
+            <td>{{ row.created_at }}</td>
+            <td>{{ row.updated_at }}</td>
+            <td><a href="/task_edit/{{ row.id }}/">
+                <i class="material-icons editbtn" title="delete" style="vertical-align: middle;">&#xE254;</i></a>
+
+            </td>
+            <td>
+                <a href="/task_delete/{{ row.id }}/">
+                    <i class="material-icons" title="delete" style="vertical-align: middle;">&#xE872;</i></a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<script>
+    $('.deletebtn').click(function () {
+        alert("here")
+        document.getElementById("mydelete_form").submit();
+    });
+</script>
+</body>
+</html>
